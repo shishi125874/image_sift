@@ -77,10 +77,11 @@ def save_batch_dete(file_name, output_path):
             except:
                 continue
 
-            print 'iter:%d  loading file %s , sift lenght: %d dete num: %d' % (iter, file_path, len(des), count)
+            print 'iter:%d  loading file %s , sift lenght: %d dete num: %d' % (iter, file_path, len(sift_list), count)
             if count == 0:
                 sift_list = des
                 labels_sift = label
+                count += 1
             elif count < 1000:
                 try:
                     sift_list = np.concatenate((sift_list, des), axis=0)
@@ -88,6 +89,7 @@ def save_batch_dete(file_name, output_path):
                     # print 'all sift batch lenght is:' + str(sift_list.shape)
                 except:
                     pass
+                count += 1
             else:
                 try:
                     sift_list = np.concatenate((sift_list, des), axis=0)
@@ -100,7 +102,7 @@ def save_batch_dete(file_name, output_path):
                 labels_sift = []
                 count = 0
                 iter += 1
-            count += 1
+
 
 
 if __name__ == '__main__':
